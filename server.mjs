@@ -1,4 +1,4 @@
-import exprss from "express";
+import express from "express";
 import cors from "cors";
 import path from "path";
 
@@ -35,4 +35,12 @@ app.get("/about", (req, res) => {
     console.log("ip from /about request : ==>", req.ip);
 
     res.send(` This is About Page ====>>> ${new Date().toString()} `)
+})
+
+
+
+
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
 })
