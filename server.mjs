@@ -38,9 +38,13 @@ app.get("/about", (req, res) => {
 })
 
 
+const __dirname = path.resolve();
+
+// app.use("/", express.static(path.join(__dirname, './web/build')));
+// app.use("*", express.static(path.join(__dirname, './web/build/index.html')));
 
 
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
-})
+});
