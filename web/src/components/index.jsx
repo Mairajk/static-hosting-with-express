@@ -1,4 +1,9 @@
+
+import './index.css';
+
 import axios from "axios";
+import moment from "moment";
+
 import { useEffect, useState } from "react";
 
 const Weather = () => {
@@ -20,7 +25,21 @@ const Weather = () => {
 
   return (
     <div className="weather">
-      {weatherData ? <h1> {weatherData.humidity} </h1> : null}
+
+      <h1>Weather</h1>
+
+      {weatherData ?
+        <div className="weatherData">
+
+          <p className=" date"> {moment(weatherData.serverTime).format('MMMM Do YYYY')} </p>
+          <p className=" time"> {moment(weatherData.serverTime).format(' h:mm:ss a')} </p>
+          <p className="items humidity"> Humidity : {weatherData.humidity} </p>
+          <p className="items temp"> Temprature : {weatherData.temp} </p>
+          <p className="items minTemp"> Min : {weatherData.minTemp} </p>
+          <p className="items maxTemp"> Max : {weatherData.maxTemp} </p>
+
+        </div>
+        : null}
     </div>
   );
 };
