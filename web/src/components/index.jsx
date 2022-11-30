@@ -11,7 +11,7 @@ const Weather = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5001/weather")
+      .get("https://sparkling-bathing-suit-newt.cyclic.app//weather")
       .then((response) => {
         console.log(response);
         setWeatherData(response.data);
