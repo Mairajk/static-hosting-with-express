@@ -32,7 +32,7 @@ const Weather = () => {
         <div className="weatherData">
 
           <p className=" date"> {moment(weatherData.serverTime).format('MMMM Do YYYY')} </p>
-          <p className=" time"> {moment(weatherData.serverTime).format(' h:mm:ss a')} </p>
+          <p className=" time"> {moment(weatherData.serverTime).format(' hh:mm a')} </p>
           <p className="items humidity"> Humidity : {weatherData.humidity} </p>
           <p className="items temp"> Temprature : {weatherData.temp} </p>
           <p className="items minTemp"> Min : {weatherData.minTemp} </p>
