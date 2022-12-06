@@ -6,12 +6,21 @@ import moment from "moment";
 
 import { useEffect, useState } from "react";
 
+
+let baseURL = '';
+if (window.location.href.split(':')[0] === 'http') {
+  baseURL = 'http://localhost:5001'
+};
+
 const Weather = () => {
   const [weatherData, setWeatherData] = useState(null);
+  const [cityName, setCityName] = useState('');
 
-  useEffect(() => {
+  const getWeather = (e) => {
+    e.preventDefault();
+
     axios
-      .get("https://sparkling-bathing-suit-newt.cyclic.app/weather")
+      .get(`${baseURL}/weather/${cityName}`)
       .then((response) => {
         console.log(response);
         setWeatherData(response.data);
@@ -21,15 +30,41 @@ const Weather = () => {
       .catch((err) => {
         console.log("error: " + err);
       });
-  }, []);
+
+  };
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`${baseURL}/weather/${cityName}`)
+  //     .then((response) => {
+  //       console.log(response);
+  //       setWeatherData(response.data);
+  //       console.log("weatherData : ", weatherData);
+  //     })
+
+  //     .catch((err) => {
+  //       console.log("error: " + err);
+  //     });
+  // }, []);
 
   return (
     <div className="weather">
 
       <h1>Weather</h1>
 
-      {weatherData ?
+      <form action="" onSubmit={getWeather}>
+        <input
+          type="text"
+          required
+          onChange={(e) => setCityName(e.target.value)}
+          autoFocus
+        />
+      </form>
+
+      {(weatherData) ?
         <div className="weatherData">
+
+          <h3 className='city'>{weatherData.city}</h3>
 
           <p className=" date"> {moment(weatherData.serverTime).format('MMMM Do YYYY')} </p>
           <p className=" time"> {moment(weatherData.serverTime).format(' hh:mm a')} </p>

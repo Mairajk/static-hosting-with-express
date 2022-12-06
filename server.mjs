@@ -14,10 +14,11 @@ app.get("/hello", (req, res) => {
   res.send(` Hello World ====>>> ${new Date().toString()} `);
 });
 
-app.get("/weather", (req, res) => {
+app.get('/weather/:cityName', (req, res) => {
   console.log("ip from /weather request : ==>", req.ip);
 
   res.send({
+    city: req.params.cityName,
     temp: 28,
     minTemp: 24,
     maxTemp: 31,
